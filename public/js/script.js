@@ -31,5 +31,12 @@ $(document).ready(function() {
     });
   });
   
+  $('#playlists div span').click(function(vnos) {
+    var details = $(this);
+    $.get('/playlists/' + details.parent().attr('album'), function(data) {
+      details.html(' (' + data.tracks + ' track' + (data.tracks != 1? 's': '') + ' | ' +
+        Math.round(data.time / 60000) + ' min | <strong>$' + Math.round(data.price) + '</strong> total)');
+    });
+  });
   
 });
