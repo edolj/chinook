@@ -95,9 +95,18 @@ var genres = function(artist, callback) {
         console.log(error);
         callback('<strong>Something went wrong!</strong>');
       } else {
-        var result = '<h5>Genres</h5><div id="genres">' + 
+        var result = "";
+        if(rows.length == 0) { 
+          result = '<h5>Genres</h5><div id="genres">' + 
           'No genres for this artist' + 
           '</div>';
+        } else {  
+        result = '<h5>Genres</h5><div id="genres">' + '|';  
+        rows.forEach(function (row) {
+          result += row.Name+"| ";
+        });
+        result += '</div>'; 
+        }
         callback(result);
       }
   });
