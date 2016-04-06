@@ -105,6 +105,14 @@ var genres = function(artist, callback) {
 var express = require('express');
 var app = express();
 
+app.listen(process.env.PORT, function() {
+  console.log("Streznik na portu: "+process.env.PORT);
+});
+
+app.get('/',function(request, response) {
+   response.redirect('/artists/1'); 
+});
+
 /* settings for static application files */
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
